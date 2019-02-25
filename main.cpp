@@ -70,9 +70,13 @@ main(int argc, char *argv[]) {
 */
 
 // Load the environment model.
+// A NodePath is a "handle" to a node.
     NodePath scene = window->load_model(framework.get_models(), "models/environment");
-// Reparent the model to render.
+
+// In order to put an object in the world, you will need to parent it to render
+// or to some node that is in turn parented to render.
     scene.reparent_to(window->get_render());
+
 // Apply scale and position transforms to the model.
     scene.set_scale(0.25f, 0.25f, 0.25f);
     scene.set_pos(-8, 42, 0);
@@ -84,8 +88,8 @@ main(int argc, char *argv[]) {
 
 // Load the walk animation
     window->load_model(pandaActor, "models/panda-walk4");
-    window->loop_animations(0);// bind models and animations
-                               // set animations to loop
+    window->loop_animations(0);// Bind models and animations
+                               // Set animations to loop
 
 // Intervals are tasks that change a property from one value to another
 // over a specified period of time.
